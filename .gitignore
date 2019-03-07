@@ -1,0 +1,6 @@
+*.o
+Makefile
+.DS_Store
+.vscode
+*.bundle
+
