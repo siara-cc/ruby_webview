@@ -3,4 +3,5 @@ Makefile
 .DS_Store
 .vscode
 *.bundle
-
+*.so
+*.def
