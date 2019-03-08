@@ -27,10 +27,10 @@ void Init_WebView() {
   //rb_define_method(MyTest, "test1", method_test1, 0);	
 }
 
-extern VALUE rb_vm_top_self(void);
+VALUE slf;
 void my_cb(struct webview *w, const char *arg) {
   //printf("Hello: %s\n", arg);
-  VALUE ret = rb_funcall(rb_vm_top_self(),
+  VALUE ret = rb_funcall(slf,
            rb_intern(callback_fn),
            1,
            rb_str_new2(arg));
@@ -41,6 +41,7 @@ void my_cb(struct webview *w, const char *arg) {
 }
 
 VALUE method_webview(VALUE self, VALUE url, VALUE cb_fn) {
+  slf = self;
   wv.url = RSTRING_PTR(url);
   callback_fn = RSTRING_PTR(cb_fn);
   int blocking = 0;
